@@ -21,11 +21,12 @@ const InputField=()=>{
     return (
         <div>
             <h1>Github Profile Viewer</h1>
-            <label>Enter Github Username here</label>
+            <label>Enter Github Username here</label><br/>
             <input type="text" onChange={valueChanged} value={username} placeholder="enter github username..." name="username"/>
+            <br/>
             <button type='button' onClick={fetchUserProfile}>Fetch User</button>
             {user && (
-                <div>
+                <div className='.user-profile'>
                     <h2>Username:{user.login}</h2>
                     <img width={150} src={user.avatar_url} alt={`${user.login}'s avatar`}/>
                     <p>Repository:{user.repos_url}</p>
