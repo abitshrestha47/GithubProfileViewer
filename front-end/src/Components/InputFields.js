@@ -11,7 +11,7 @@ const InputField = () => {
     try {
       console.log("waiting for data");
       const response = await axios.get(
-        `github-profile-viewer-theta.vercel.app/api/user/${username}`
+        `https://github-profile-viewer-theta.vercel.app/api/user/${username}`
       );
       console.log(response);
       setUser(response.data);
