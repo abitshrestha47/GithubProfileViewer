@@ -28,7 +28,9 @@ app.get('/api/user/:username',async(req,res)=>{
         console.log(error);
     };
 });
-
+app.get('/',(req,res)=>{
+    res.json("Backend");
+})
 app.listen(port,()=>{
     console.log(`Server listening on http://localhost:${port}`);
 })
