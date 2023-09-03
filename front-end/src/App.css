@@ -1,5 +1,19 @@
 /* InputField.css */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+*{
+  margin:0;
+  padding:0;
+  font-family: 'Space Mono', monospace;
+}
 
+.contents{
+  height:100vh;
+  width:100%;
+  background:#131a29;
+}
+.inner{
+  padding:4rem 3rem;
+}
 .input-field-container {
   display: flex;
   flex-direction: column;
@@ -11,38 +25,54 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
 }
-body{
-  margin:4rem 4rem;
-}
 
 h1 {
   font-size: 28px;
-  margin-bottom: 20px;
+  color:white;
 }
 
-label {
+/* label {
   font-size: 18px;
   margin-bottom: 10px;
-}
+} */
 
 input {
-  width: 70%;
-  padding: 12px;
+  width:97%;
+  padding: 20px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-top:1rem;
+  background:#1d2540;
+  border:none;
+  color:white;
 }
 
+.generatedContent{
+  background:#1d2540;
+  padding:20px;
+  color:white;
+}
+
+.repo{
+  color:#1a58aa;
+}
+
+.input-group{
+  position:relative;
+}
 button {
   background-color: #007bff;
   color: #fff;
-  padding: 12px 20px;
+  padding: 10px 15px;
   border: none;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  z-index:3;
+  position:absolute;
+  margin-left:-9rem;
+  margin-top:0.5rem;
 }
 
 button:hover {
@@ -62,9 +92,9 @@ h2 {
 img {
   max-width: 1050px;
   border-radius: 50%;
-  margin: 20px auto;
   display: block;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin:10px 10px;
 }
 
 p {
