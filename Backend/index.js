@@ -3,7 +3,13 @@ const axios=require('axios');
 const cors=require('cors');
 
 const app=express();
-app.use(cors());
+app.use(cors(
+    {
+        origin:["https://github-profile-viewer-front-end.vercel.app/"],
+        methods:["POST","GET"],
+        credentials:true
+    }
+));
 
 const port=3001;
 
