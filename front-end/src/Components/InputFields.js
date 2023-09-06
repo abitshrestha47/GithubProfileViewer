@@ -4,6 +4,7 @@ import "font-awesome/css/font-awesome.min.css";
 
 const InputField = () => {
   const [username, setUserName] = useState("");
+  const [error,setError]=useState("");
   const [textEntered, setTextEntered] = useState(false);
   const [user, setUser] = useState(null);
   const valueChanged = (e) => {
@@ -11,6 +12,7 @@ const InputField = () => {
 
     setTextEntered(!(e.target.value === ""));
   };
+  //GETTING USERPROFILE FROM THE BACKEND
   const fetchUserProfile = async () => {
     try {
       console.log("waiting for data");
@@ -18,10 +20,23 @@ const InputField = () => {
         `http://localhost:3001/api/user/${username}`
       );
       console.log(response);
-      setUser(response.data);
-    } catch (error) {
-      console.log(`Error fetching user profile`, error.message);
-      console.log(error.code);
+      const responseData=response.data;
+      if(responseData.message==="Request failed with status code 404"){
+        console.log('check');
+        setError('Is this user exists? Try again...');
+      }
+      else{
+        setUser(response.data);
+      }
+    }catch (error) {
+      if (error.response) {
+        console.log(`Server responded with status code: ${error.response.status}`);
+        console.log(`Response data:`, error.response.data);
+      } else if (error.request) {
+        console.log(`No response received. Network error.`);
+      } else {
+        console.log(`Error:`, error.message);
+      }
     }
   };
   return (
@@ -41,7 +56,7 @@ const InputField = () => {
           />
           <button onClick={fetchUserProfile}>Search</button>
         </div>
-        <div className={`generatedContent ${user ? "dis" : "none"}`}>
+        <div className={`generatedContent ${user||error ? "dis" : "none"}`}>
           {user ? (
             <div className="user-profile">
               <img
@@ -67,8 +82,11 @@ const InputField = () => {
               </div>
             </div>
           ) : (
-            "No Such User Found"
-          )}
+            error && (
+              <div className="erroring">
+                <p>{error}</p> {/* Ensure the error message is within a paragraph or other appropriate HTML element */}
+              </div>
+            )            )}
         </div>
       </div>
     </div>

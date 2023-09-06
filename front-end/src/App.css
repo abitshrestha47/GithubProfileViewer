@@ -177,3 +177,10 @@ span{
   margin-top:1rem;
   color:gray;
 }
+.erroring{
+  display:block;
+  color:red;
+}
+.erroring p{
+  font-size:1rem;
+}

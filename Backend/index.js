@@ -15,13 +15,12 @@ app.get('/api/user/:username',async(req,res)=>{
         //axios for the managing of apis
         const response=await axios.get(`https://api.github.com/users/${username}`);
         //for retrieving the data portion only from the header and payload portion
-        if(response.status){
             const data=response.data;
             res.json(data);
             console.log('data sent');
-        }
     }catch(error){
-        console.log(error);
+        console.log('this runs');
+        res.json(error);
     };
 });
 
