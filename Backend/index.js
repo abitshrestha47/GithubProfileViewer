@@ -3,7 +3,17 @@ const axios=require('axios');
 const cors=require('cors');
 
 const app=express();
-app.use(cors());
+const allowedOrigins = ['http://localhost:3001', 'https://github-profile-viewer-front-end.vercel.app'];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+}));
 
 const port=3001;
 
@@ -27,6 +37,7 @@ app.get('/api/user/:username',async(req,res)=>{
 app.get('/',(req,res)=>{
     res.json("Backend");
 })
+
 
 app.listen(port,()=>{
     console.log(`Server listening on http://localhost:${port}`);
