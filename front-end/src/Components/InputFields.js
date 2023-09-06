@@ -86,7 +86,8 @@ const InputField = () => {
               <div className="erroring">
                 <p>{error}</p>
               </div>
-            )            )}
+            )     
+          )}
         </div>
       </div>
     </div>
