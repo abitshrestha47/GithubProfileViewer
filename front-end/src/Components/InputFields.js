@@ -3,6 +3,7 @@ import axios from "axios";
 import "font-awesome/css/font-awesome.min.css";
 
 const InputField = () => {
+  const [isLoading,setIsLoading]=useState(false);
   const [username, setUserName] = useState("");
   const [error,setError]=useState("");
   const [textEntered, setTextEntered] = useState(false);
@@ -33,6 +34,7 @@ const InputField = () => {
   //GETTING USERPROFILE FROM THE BACKEND
   const fetchUserProfile = async () => {
     try {
+      setIsLoading(true);
       console.log("waiting for data");
       const response = await axios.get(
         `http://localhost:3001/api/user/${username}`
@@ -54,6 +56,8 @@ const InputField = () => {
       }
     }catch (error) {
       // console.log(error);
+    }finally{
+      setIsLoading(false);
     }
   };
   return (
@@ -72,6 +76,7 @@ const InputField = () => {
             name="username"
           onBlur={blur}/>
           <button onClick={fetchUserProfile}>Search</button>
+          {isLoading?<p className="loading">Loading...</p>:""}
         </div>
         <div className={`generatedContent ${user||error ? "dis" : "none"}`}>
           {user ? (
