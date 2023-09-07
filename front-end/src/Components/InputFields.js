@@ -106,7 +106,7 @@ const InputField = () => {
           ) : (
             error && (
               <div className="erroring">
-                <p>{error}</p> {/* Ensure the error message is within a paragraph or other appropriate HTML element */}
+                <p>{error}</p> {}
               </div>
             )            )}
         </div>
