@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "font-awesome/css/font-awesome.min.css";
 
@@ -12,31 +12,48 @@ const InputField = () => {
 
     setTextEntered(!(e.target.value === ""));
   };
+  const blur=()=>{
+    if(username===''){
+      setUser('');
+    }
+  }
+  useEffect(()=>{
+    if(username===''){
+      resetUser();
+      resetError();
+    }
+  },[username]);
+  const resetUser=()=>{
+    setUser(null);
+  }
+  const resetError=()=>{
+    setError(null);
+  }
+
   //GETTING USERPROFILE FROM THE BACKEND
   const fetchUserProfile = async () => {
     try {
       console.log("waiting for data");
       const response = await axios.get(
-        `https://github-profile-viewer-theta.vercel.app/api/user/${username}`
+        `http://localhost:3001/api/user/${username}`
       );
-      console.log(response);
+      // console.log(response);
       const responseData=response.data;
-      if(responseData.message==="Request failed with status code 404"){
-        console.log('check');
+      if(responseData.code==='ENOTFOUND'){
+        resetUser();
+        setError('The internet is not available');
+      }
+      else if(responseData.code==="ERR_BAD_REQUEST"){
+        resetUser();
+        // console.log('check');
         setError('Is this user exists? Try again...');
       }
-      else{
+      else if(response.status===200){
+        resetUser();
         setUser(response.data);
       }
     }catch (error) {
-      if (error.response) {
-        console.log(`Server responded with status code: ${error.response.status}`);
-        console.log(`Response data:`, error.response.data);
-      } else if (error.request) {
-        console.log(`No response received. Network error.`);
-      } else {
-        console.log(`Error:`, error.message);
-      }
+      // console.log(error);
     }
   };
   return (
@@ -53,7 +70,7 @@ const InputField = () => {
             value={username}
             placeholder="enter github username..."
             name="username"
-          />
+          onBlur={blur}/>
           <button onClick={fetchUserProfile}>Search</button>
         </div>
         <div className={`generatedContent ${user||error ? "dis" : "none"}`}>

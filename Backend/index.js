@@ -3,17 +3,8 @@ const axios=require('axios');
 const cors=require('cors');
 
 const app=express();
-const allowedOrigins = ['http://localhost:3001', 'https://github-profile-viewer-front-end.vercel.app'];
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-}));
+app.use(cors());
 
 const port=3001;
 
@@ -24,13 +15,14 @@ app.get('/api/user/:username',async(req,res)=>{
         // https:github.com/abitshrestha47/GithubProfileViewer/tree/master/Backendonsole.log('check');
         //axios for the managing of apis
         const response=await axios.get(`https://api.github.com/users/${username}`);
+        console.log(response);
         //for retrieving the data portion only from the header and payload portion
-            const data=response.data;
-            res.json(data);
-            console.log('data sent');
+        const data=response.data;
+        res.json(data);
+        // console.log('data sent');
     }catch(error){
-        console.log('this runs');
         res.json(error);
+        // console.log(error);
     };
 });
 
