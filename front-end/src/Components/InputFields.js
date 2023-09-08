@@ -45,10 +45,14 @@ const InputField = () => {
         resetUser();
         setError('The internet is not available');
       }
-      else if(responseData.code==="ERR_BAD_REQUEST"){
+      else if(responseData.code==="ERR_BAD_REQUEST" && responseData.message!='Request failed with status code 403'){
         resetUser();
         // console.log('check');
         setError('Is this user exists? Try again...');
+      }
+      else if(responseData.message==='Request failed with status code 403'){
+        resetUser();
+        setError('API has reached the limit.Try again after some amount of time');
       }
       else if(response.status===200){
         resetUser();
