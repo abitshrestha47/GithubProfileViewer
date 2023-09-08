@@ -110,9 +110,11 @@ const InputField = () => {
           ) : (
             error && (
               <div className="erroring">
-                <p>{error}</p> {}
+
+                <p>{error}</p>
               </div>
-            )            )}
+            )     
+          )}
         </div>
       </div>
     </div>
