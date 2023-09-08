@@ -184,3 +184,73 @@ span{
 .erroring p{
   font-size:1rem;
 }
+
+@media (max-width: 576px) {
+  .inner {
+    width: 90vw; /* Adjust width for extra small screens (e.g., mobile phones) */
+  }
+
+  input {
+    padding: 15px; /* Reduce padding for extra small screens */
+    padding-left:30px;
+  }
+
+  button {
+    margin-left: 0; /* Reset margin for button */
+    margin-top: 0.1rem; /* Add spacing below input for button */
+  }
+  .FAS{
+    left:0.5rem;
+    top:1rem;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .inner {
+    width: 80vw; 
+  }
+  button{
+    margin-left:72vw;
+    margin-top:-4.2rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .inner {
+    width: 70vw; 
+  }
+  button{
+    margin-left:60vw;
+    margin-top:-4.2rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .inner {
+    width: 50vw; 
+  }
+  button{
+    margin-left:60vw;
+    margin-top:-4.2rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .inner {
+    width: 60vw; /* Adjust width for larger screens (e.g., laptops) */
+  }
+  button {
+    margin-left:50vw;
+    margin-top:-4.2rem;
+  }
+}
+
+@media (min-width: 1441px) {
+  .inner {
+    width: 50vw; /* Adjust width for extra-large screens (e.g., desktop monitors) */
+  }
+  button {
+    margin-left: 45vw;
+    margin-top: -4.2rem;
+  }
+}
